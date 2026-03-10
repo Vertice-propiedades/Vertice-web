@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Propiedades | Inmobiliaria Premium en Chile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .heading { font-family: 'Playfair Display', serif; }
+        .hero-bg {
+            background-image: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=90');
+            background-size: cover;
+            background-position: center;
+        }
+        .nav-link { transition: all 0.3s; }
+        .nav-link:hover { color: #f59e0b; transform: translateY(-2px); }
+        .card-hover { transition: all 0.4s; }
+        .card-hover:hover { transform: translateY(-15px); box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4); }
+        .map-container { height: 420px; }
+    </style>
+</head>
+<body class="bg-zinc-950 text-white">
+
+    <!-- NAVBAR -->
+    <nav class="bg-zinc-950 border-b border-zinc-800 fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-amber-500 rounded-2xl flex items-center justify-center text-2xl font-bold shadow-lg">🏠</div>
+                <div>
+                    <span class="heading text-3xl font-bold tracking-tight text-white">ELITE</span>
+                    <span class="text-amber-500 text-xl font-semibold">PROPIEDADES</span>
+                </div>
+            </a>
+
+            <!-- Menú Desktop -->
+            <div class="hidden md:flex items-center gap-10 text-sm font-medium">
+                <a href="servicios.html" class="nav-link">Servicios</a>
+                <a href="propiedades.html" class="nav-link">Propiedades</a>
+                <a href="contacto.html" class="nav-link">Contacto</a>
+            </div>
+
+            <!-- Hamburger -->
+            <button id="hamburger" class="md:hidden text-3xl">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <!-- WhatsApp flotante -->
+            <a href="https://wa.me/56912345678" target="_blank"
+               class="hidden md:flex items-center gap-2 bg-green-500 hover:bg-green-600 px-5 py-3 rounded-2xl font-semibold text-sm transition">
+                <i class="fa-brands fa-whatsapp text-xl"></i>
+                <span>WhatsApp</span>
+            </a>
+        </div>
+
+        <!-- Menú móvil -->
+        <div id="mobile-menu" class="hidden md:hidden bg-zinc-950 border-t border-zinc-800 py-6">
+            <div class="flex flex-col gap-6 px-6 text-lg font-medium">
+                <a href="servicios.html" class="py-2">Servicios</a>
+                <a href="propiedades.html" class="py-2">Propiedades</a>
+                <a href="contacto.html" class="py-2">Contacto</a>
+                <a href="https://wa.me/56912345678" target="_blank"
+                   class="flex items-center gap-3 bg-green-500 text-white py-4 px-6 rounded-3xl justify-center font-semibold">
+                    <i class="fa-brands fa-whatsapp text-2xl"></i> Hablar por WhatsApp
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero-bg h-screen flex items-center pt-16">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+            <div class="max-w-3xl mx-auto">
+                <p class="inline-block bg-amber-500/90 text-zinc-950 text-xs font-bold tracking-[2px] px-6 py-3 rounded-3xl mb-6">INMOBILIARIA PREMIUM • SANTIAGO • REGIÓN METROPOLITANA</p>
+                <h1 class="heading text-6xl md:text-7xl font-bold leading-none mb-6">Tu hogar ideal<br>está más cerca de lo que crees</h1>
+                <p class="text-xl text-zinc-300 max-w-lg mx-auto mb-10">Venta • Arriendo • Administración • Asesoría Hipotecaria • Informe DICOM interactivo</p>
+                
+                <!-- BUSCADOR -->
+                <div class="bg-white/10 backdrop-blur-xl rounded-3xl p-2 max-w-2xl mx-auto">
+                    <div class="flex flex-col md:flex-row gap-3">
+                        <div class="flex-1 relative">
+                            <input id="search-input" type="text" 
+                                   class="w-full bg-zinc-900 border border-zinc-700 focus:border-amber-500 rounded-3xl px-7 py-6 text-white placeholder:text-zinc-400 outline-none text-lg"
+                                   placeholder="Ingresa dirección (ej: Av. Providencia 1234)">
+                            <i class="fa-solid fa-magnifying-glass absolute right-7 top-1/2 -translate-y-1/2 text-zinc-400"></i>
+                        </div>
+                        <button onclick="buscarPropiedad()" 
+                                class="bg-amber-500 hover:bg-amber-600 text-zinc-950 font-bold text-lg px-12 py-6 rounded-3xl flex items-center gap-3 transition">
+                            <i class="fa-solid fa-search"></i>
+                            <span>BUSCAR</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <p class="text-xs text-zinc-400 mt-4 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-map-marker-alt"></i>
+                    Santiago • Viña del Mar • Concepción
+                </p>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-12 left-1/2 flex flex-col items-center text-xs tracking-widest">
+            <div class="w-px h-12 bg-gradient-to-b from-transparent via-white/40 to-transparent"></div>
+            <p class="mt-3">DESPLAZA PARA EXPLORAR</p>
+        </div>
+    </header>
+
+    <!-- MAPA INTERACTIVO -->
+    <section class="py-20 bg-zinc-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row gap-12 items-center">
+                <div class="flex-1">
+                    <div class="inline-flex items-center gap-2 bg-amber-500/10 text-amber-500 px-5 py-2 rounded-3xl text-sm font-semibold mb-6">
+                        <i class="fa-solid fa-location-dot"></i>
+                        BUSCA POR MAPA
+                    </div>
+                    <h2 class="heading text-5xl font-bold mb-6 leading-none">Encuentra propiedades<br>en tiempo real</h2>
+                    <p class="text-zinc-400 text-lg max-w-md">Explora nuestro mapa interactivo. Haz clic en los pines para ver detalles de venta y arriendo.</p>
+                    <div class="mt-8 flex gap-4">
+                        <button onclick="centrarSantiago()" 
+                                class="px-8 py-4 border border-zinc-700 hover:border-amber-500 rounded-2xl text-sm font-medium transition">Centrar en Santiago</button>
+                    </div>
+                </div>
+                
+                <!-- MAPA -->
+                <div class="flex-1 w-full rounded-3xl overflow-hidden shadow-2xl border border-zinc-800">
+                    <div id="map" class="map-container w-full"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROPIEDADES DESTACADAS -->
+    <section class="py-20 bg-black">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <span class="text-amber-500 font-medium text-sm tracking-widest">DESTACADAS</span>
+                    <h2 class="heading text-5xl font-bold">Propiedades más vistas</h2>
+                </div>
+                <a href="propiedades.html" class="text-amber-500 flex items-center gap-2 font-medium group">
+                    Ver todas 
+                    <span class="group-hover:translate-x-2 transition">→</span>
+                </a>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="card-hover bg-zinc-900 rounded-3xl overflow-hidden">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1613977257363-707ba934822f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=85" 
+                             class="w-full h-72 object-cover">
+                        <div class="absolute top-5 left-5 bg-black/70 px-4 py-1 text-xs font-bold rounded-2xl">VENTA</div>
+                    </div>
+                    <div class="p-7">
+                        <p class="text-sm text-zinc-400">Las Condes • Santiago</p>
+                        <h3 class="text-2xl font-semibold mt-2 mb-1">Departamento 120m² • 3D 2B</h3>
+                        <p class="text-3xl font-bold text-amber-500">$ 485.000.000</p>
+                        <div class="flex gap-6 mt-6 text-sm">
+                            <div><i class="fa-solid fa-bed mr-2"></i>3</div>
+                            <div><i class="fa-solid fa-bath mr-2"></i>2</div>
+                            <div><i class="fa-solid fa-car mr-2"></i>2</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="card-hover bg-zinc-900 rounded-3xl overflow-hidden">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=85" 
+                             class="w-full h-72 object-cover">
+                        <div class="absolute top-5 left-5 bg-emerald-500/90 px-4 py-1 text-xs font-bold rounded-2xl">ARRIENDO</div>
+                    </div>
+                    <div class="p-7">
+                        <p class="text-sm text-zinc-400">Providencia • Santiago</p>
+                        <h3 class="text-2xl font-semibold mt-2 mb-1">Casa 250m² con piscina</h3>
+                        <p class="text-3xl font-bold text-emerald-500">$ 1.200.000 / mes</p>
+                        <div class="flex gap-6 mt-6 text-sm">
+                            <div><i class="fa-solid fa-bed mr-2"></i>5</div>
+                            <div><i class="fa-solid fa-bath mr-2"></i>4</div>
+                            <div><i class="fa-solid fa-car mr-2"></i>3</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="card-hover bg-zinc-900 rounded-3xl overflow-hidden">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1600585153490-76fb20a32601?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=85" 
+                             class="w-full h-72 object-cover">
+                        <div class="absolute top-5 left-5 bg-black/70 px-4 py-1 text-xs font-bold rounded-2xl">VENTA</div>
+                    </div>
+                    <div class="p-7">
+                        <p class="text-sm text-zinc-400">Vitacura • Santiago</p>
+                        <h3 class="text-2xl font-semibold mt-2 mb-1">Oficina 80m² • 2 estacionamientos</h3>
+                        <p class="text-3xl font-bold text-amber-500">$ 265.000.000</p>
+                        <div class="flex gap-6 mt-6 text-sm">
+                            <div><i class="fa-solid fa-bed mr-2"></i>—</div>
+                            <div><i class="fa-solid fa-bath mr-2"></i>2</div>
+                            <div><i class="fa-solid fa-car mr-2"></i>2</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="py-20 bg-zinc-950">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <p class="text-amber-500 font-medium mb-3">LO QUE DICEN NUESTROS CLIENTES</p>
+            <div class="text-3xl italic leading-tight">"Gracias a Elite Propiedades vendí mi departamento en solo 18 días y obtuve un excelente precio. Además, el informe DICOM interactivo me ayudó a cerrar el crédito hipotecario sin problemas."</div>
+            <div class="mt-10 flex items-center justify-center gap-4">
+                <img src="https://randomuser.me/api/portraits/women/44.jpg" class="w-12 h-12 rounded-2xl object-cover">
+                <div class="text-left">
+                    <p class="font-semibold">Carolina Muñoz</p>
+                    <p class="text-xs text-zinc-500">Las Condes • Vendedora 2025</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black py-16 border-t border-zinc-900">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-10">
+            <div>
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-9 h-9 bg-amber-500 rounded-2xl flex items-center justify-center text-2xl">🏠</div>
+                    <span class="heading text-3xl font-bold">ELITE</span>
+                </div>
+                <p class="text-zinc-400 text-sm">Expertos en venta, arriendo y administración de propiedades en Chile desde 2018.</p>
+            </div>
+            <div>
+                <p class="font-semibold mb-5">Enlaces rápidos</p>
+                <ul class="space-y-3 text-sm text-zinc-400">
+                    <li><a href="servicios.html" class="hover:text-amber-500">Servicios</a></li>
+                    <li><a href="propiedades.html" class="hover:text-amber-500">Propiedades</a></li>
+                    <li><a href="contacto.html" class="hover:text-amber-500">Contacto</a></li>
+                </ul>
+            </div>
+            <div>
+                <p class="font-semibold mb-5">Servicios</p>
+                <ul class="space-y-3 text-sm text-zinc-400">
+                    <li>Venta y arriendo</li>
+                    <li>Administración de propiedades</li>
+                    <li>Informe DICOM interactivo</li>
+                    <li>Asesoría de compra</li>
+                    <li>Gestión de créditos hipotecarios</li>
+                </ul>
+            </div>
+            <div>
+                <p class="font-semibold mb-5">Contáctanos</p>
+                <a href="https://wa.me/56912345678" target="_blank" 
+                   class="flex items-center gap-3 text-green-400 hover:text-green-500 font-medium">
+                    <i class="fa-brands fa-whatsapp text-3xl"></i>
+                    <span>+56 9 1234 5678</span>
+                </a>
+                <p class="text-xs text-zinc-500 mt-8">© 2026 Elite Propiedades • Todos los derechos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tailwind script
+        tailwind.config = {
+            content: [],
+            theme: {
+                extend: {}
+            }
+        }
+
+        // Hamburger
+        const hamburger = document.getElementById('hamburger')
+        const mobileMenu = document.getElementById('mobile-menu')
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden')
+        })
+
+        // Leaflet Map
+        let map = L.map('map').setView([-33.4489, -70.6693], 13)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map)
+
+        // Pines de ejemplo
+        const propiedades = [
+            { lat: -33.42, lng: -70.65, title: "Depto Providencia", tipo: "venta", precio: "$485M" },
+            { lat: -33.45, lng: -70.62, title: "Casa Las Condes", tipo: "arriendo", precio: "$1.2M/mes" },
+            { lat: -33.40, lng: -70.55, title: "Oficina Vitacura", tipo: "venta", precio: "$265M" }
+        ]
+
+        propiedades.forEach(p => {
+            const color = p.tipo === "venta" ? "#f59e0b" : "#10b981"
+            L.marker([p.lat, p.lng], {
+                icon: L.divIcon({
+                    className: 'custom-pin',
+                    html: `<div style="background:${color}; width:28px; height:28px; border-radius:9999px; display:flex; align-items:center; justify-content:center; color:white; font-size:10px; font-weight:bold;">📍</div>`,
+                    iconSize: [28, 28]
+                })
+            }).addTo(map)
+            .bindPopup(`<b>\( {p.title}</b><br><span class="text-xs"> \){p.precio}</span>`)
+        })
+
+        function centrarSantiago() {
+            map.flyTo([-33.4489, -70.6693], 13)
+        }
+
+        // Buscador simulado
+        function buscarPropiedad() {
+            const input = document.getElementById('search-input').value.trim()
+            if (!input) {
+                alert("Por favor ingresa una dirección")
+                return
+            }
+            alert(`✅ Buscando propiedades cerca de: "${input}"\n\nResultados encontrados:\n• Depto en Providencia\n• Casa en Las Condes\n\n¡Revisa la sección Propiedades para más!`)
+            window.location.href = "propiedades.html"
+        }
+
+        // Scroll suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault()
+            })
+        })
+    </script>
+</body>
+</html>
