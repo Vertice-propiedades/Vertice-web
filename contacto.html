@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Elite Propiedades | Habla con Nosotros</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .heading { font-family: 'Playfair Display', serif; }
+        .nav-link { transition: all 0.3s; }
+        .nav-link:hover { color: #f59e0b; transform: translateY(-2px); }
+    </style>
+</head>
+<body class="bg-zinc-950 text-white">
+
+    <!-- NAVBAR (igual) -->
+    <nav class="bg-zinc-950 border-b border-zinc-800 fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-amber-500 rounded-2xl flex items-center justify-center text-2xl font-bold shadow-lg">🏠</div>
+                <div>
+                    <span class="heading text-3xl font-bold tracking-tight text-white">ELITE</span>
+                    <span class="text-amber-500 text-xl font-semibold">PROPIEDADES</span>
+                </div>
+            </a>
+
+            <div class="hidden md:flex items-center gap-10 text-sm font-medium">
+                <a href="servicios.html" class="nav-link">Servicios</a>
+                <a href="propiedades.html" class="nav-link">Propiedades</a>
+                <a href="contacto.html" class="nav-link text-amber-500">Contacto</a>
+            </div>
+
+            <button id="hamburger" class="md:hidden text-3xl">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <a href="https://wa.me/56912345678" target="_blank" class="hidden md:flex items-center gap-2 bg-green-500 hover:bg-green-600 px-5 py-3 rounded-2xl font-semibold text-sm transition">
+                <i class="fa-brands fa-whatsapp text-xl"></i>
+                <span>WhatsApp</span>
+            </a>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-zinc-950 border-t border-zinc-800 py-6">
+            <div class="flex flex-col gap-6 px-6 text-lg font-medium">
+                <a href="servicios.html" class="py-2">Servicios</a>
+                <a href="propiedades.html" class="py-2">Propiedades</a>
+                <a href="contacto.html" class="py-2">Contacto</a>
+                <a href="https://wa.me/56912345678" target="_blank" class="flex items-center gap-3 bg-green-500 text-white py-4 px-6 rounded-3xl justify-center font-semibold">
+                    <i class="fa-brands fa-whatsapp text-2xl"></i> Hablar por WhatsApp
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO CONTACTO -->
+    <section class="pt-32 min-h-screen flex items-center bg-gradient-to-br from-black via-zinc-950 to-black relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-6 text-center z-10">
+            <p class="inline-block bg-green-500 text-black text-sm font-bold px-8 py-3 rounded-3xl mb-8">RESPUESTA EN MENOS DE 30 MINUTOS</p>
+            <h1 class="heading text-7xl font-bold leading-none mb-6">¿Listo para dar el siguiente paso?</h1>
+            <p class="text-2xl text-zinc-300 mb-12 max-w-xl mx-auto">Agenda tu asesoría gratis o envíanos tu propiedad por WhatsApp ahora mismo.</p>
+            
+            <!-- BOTÓN WHATSAPP GIGANTE -->
+            <a href="https://wa.me/56912345678?text=Hola%20Elite%20Propiedades%2C%20quiero%20vender%2Farriendar%20mi%20propiedad%20o%20recibir%20asesor%C3%ADa"
+               target="_blank"
+               class="inline-flex items-center gap-4 bg-green-500 hover:bg-green-600 text-black font-bold text-2xl px-16 py-8 rounded-3xl transition shadow-2xl shadow-green-500/50">
+                <i class="fa-brands fa-whatsapp text-5xl"></i>
+                <span>ENVIAR MENSAJE POR WHATSAPP</span>
+            </a>
+            
+            <p class="mt-8 text-zinc-400 text-sm">O llama al <span class="font-mono">+56 9 1234 5678</span></p>
+        </div>
+
+        <!-- Fondo decorativo -->
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl"></div>
+    </section>
+
+    <!-- FORMULARIO RÁPIDO -->
+    <section class="py-20 bg-zinc-900">
+        <div class="max-w-2xl mx-auto px-6">
+            <div class="bg-black rounded-3xl p-12">
+                <h2 class="text-4xl font-bold text-center mb-10">¿Prefieres que te llamemos?</h2>
+                <form onsubmit="enviarContacto(event)" class="space-y-6">
+                    <input type="text" id="nombre" placeholder="Tu nombre completo" class="w-full bg-zinc-800 border border-zinc-700 rounded-3xl px-8 py-7 text-lg">
+                    <input type="tel" id="telefono" placeholder="Tu WhatsApp (+56 9 ...)" class="w-full bg-zinc-800 border border-zinc-700 rounded-3xl px-8 py-7 text-lg">
+                    <textarea id="mensaje" rows="4" placeholder="¿Qué necesitas? (vender, arrendar, asesoría hipotecaria, DICOM...)" 
+                              class="w-full bg-zinc-800 border border-zinc-700 rounded-3xl px-8 py-7 text-lg"></textarea>
+                    <button type="submit" 
+                            class="w-full bg-amber-500 hover:bg-amber-600 text-zinc-950 font-bold py-7 rounded-3xl text-xl">
+                        ENVIAR Y RECIBIR RESPUESTA INMEDIATA
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER (igual) -->
+    <footer class="bg-black py-16 border-t border-zinc-900">
+        <!-- (mismo que en los otros archivos) -->
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-10">
+            <div>
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-9 h-9 bg-amber-500 rounded-2xl flex items-center justify-center text-2xl">🏠</div>
+                    <span class="heading text-3xl font-bold">ELITE</span>
+                </div>
+                <p class="text-zinc-400 text-sm">Expertos en venta, arriendo y administración de propiedades en Chile desde 2018.</p>
+            </div>
+            <div>
+                <p class="font-semibold mb-5">Enlaces rápidos</p>
+                <ul class="space-y-3 text-sm text-zinc-400">
+                    <li><a href="index.html" class="hover:text-amber-500">Inicio</a></li>
+                    <li><a href="servicios.html" class="hover:text-amber-500">Servicios</a></li>
+                    <li><a href="propiedades.html" class="hover:text-amber-500">Propiedades</a></li>
+                    <li><a href="contacto.html" class="hover:text-amber-500">Contacto</a></li>
+                </ul>
+            </div>
+            <div>
+                <p class="font-semibold mb-5">Servicios</p>
+                <ul class="space-y-3 text-sm text-zinc-400">
+                    <li>Venta y arriendo</li>
+                    <li>Administración de propiedades</li>
+                    <li>Informe DICOM interactivo</li>
+                    <li>Asesoría de compra</li>
+                    <li>Gestión de créditos hipotecarios</li>
+                </ul>
+            </div>
+            <div>
+                <p class="font-semibold mb-5">Contáctanos</p>
+                <a href="https://wa.me/56912345678" target="_blank" class="flex items-center gap-3 text-green-400 hover:text-green-500 font-medium">
+                    <i class="fa-brands fa-whatsapp text-3xl"></i>
+                    <span>+56 9 1234 5678</span>
+                </a>
+                <p class="text-xs text-zinc-500 mt-8">© 2026 Elite Propiedades • Todos los derechos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Hamburger
+        const hamburger = document.getElementById('hamburger')
+        const mobileMenu = document.getElementById('mobile-menu')
+        hamburger.addEventListener('click', () => mobileMenu.classList.toggle('hidden'))
+
+        function enviarContacto(e) {
+            e.preventDefault()
+            const nombre = document.getElementById('nombre').value || "Cliente"
+            alert(`✅ ¡Mensaje enviado correctamente ${nombre}!\n\nUn ejecutivo Elite te responderá por WhatsApp en minutos.\n\n¡Gracias por elegirnos!`)
+            window.location.href = "index.html"
+        }
+
+        tailwind.config = { content: [], theme: { extend: {} } }
+    </script>
+</body>
+</html>
