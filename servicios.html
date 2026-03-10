@@ -1,68 +1,211 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <!-- COPIA EXACTAMENTE EL <head> DEL index.html -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Servicios - Elite Propiedades</title>
+    <title>Servicios - Elite Propiedades | Inmobiliaria Premium Chile</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <!-- (copia todo el <style> y script del index.html también) -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .heading { font-family: 'Playfair Display', serif; }
+        .nav-link { transition: all 0.3s; }
+        .nav-link:hover { color: #f59e0b; transform: translateY(-2px); }
+        .card-hover { transition: all 0.4s; }
+        .card-hover:hover { transform: translateY(-15px); box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4); }
+    </style>
 </head>
 <body class="bg-zinc-950 text-white">
-    <!-- COPIA EXACTAMENTE EL NAVBAR del index.html -->
 
-    <section class="pt-32 pb-20 bg-gradient-to-b from-black to-zinc-900">
+    <!-- NAVBAR (igual en todas las páginas) -->
+    <nav class="bg-zinc-950 border-b border-zinc-800 fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-amber-500 rounded-2xl flex items-center justify-center text-2xl font-bold shadow-lg">🏠</div>
+                <div>
+                    <span class="heading text-3xl font-bold tracking-tight text-white">ELITE</span>
+                    <span class="text-amber-500 text-xl font-semibold">PROPIEDADES</span>
+                </div>
+            </a>
+
+            <div class="hidden md:flex items-center gap-10 text-sm font-medium">
+                <a href="servicios.html" class="nav-link text-amber-500">Servicios</a>
+                <a href="propiedades.html" class="nav-link">Propiedades</a>
+                <a href="contacto.html" class="nav-link">Contacto</a>
+            </div>
+
+            <button id="hamburger" class="md:hidden text-3xl">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <a href="https://wa.me/56912345678" target="_blank"
+               class="hidden md:flex items-center gap-2 bg-green-500 hover:bg-green-600 px-5 py-3 rounded-2xl font-semibold text-sm transition">
+                <i class="fa-brands fa-whatsapp text-xl"></i>
+                <span>WhatsApp</span>
+            </a>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-zinc-950 border-t border-zinc-800 py-6">
+            <div class="flex flex-col gap-6 px-6 text-lg font-medium">
+                <a href="servicios.html" class="py-2">Servicios</a>
+                <a href="propiedades.html" class="py-2">Propiedades</a>
+                <a href="contacto.html" class="py-2">Contacto</a>
+                <a href="https://wa.me/56912345678" target="_blank" class="flex items-center gap-3 bg-green-500 text-white py-4 px-6 rounded-3xl justify-center font-semibold">
+                    <i class="fa-brands fa-whatsapp text-2xl"></i> Hablar por WhatsApp
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SERVICIOS -->
+    <section class="pt-32 pb-20 bg-gradient-to-br from-zinc-950 via-black to-zinc-900">
         <div class="max-w-5xl mx-auto px-6 text-center">
-            <h1 class="heading text-6xl font-bold mb-6">¿Quieres vender, arrendar o administrar tu propiedad con resultados reales?</h1>
-            <p class="max-w-2xl mx-auto text-xl text-zinc-300">Te ofrecemos el paquete completo: venta rápida, arriendo seguro, administración 100% digital, Informe DICOM interactivo, asesoría de compra y gestión de créditos hipotecarios.</p>
+            <span class="inline-block bg-amber-500 text-zinc-950 text-xs font-bold tracking-[3px] px-8 py-3 rounded-3xl mb-6">PARA DUEÑOS DE PROPIEDADES</span>
+            <h1 class="heading text-6xl md:text-7xl font-bold leading-none mb-8">Vende más rápido,<br>arrenda sin riesgos,<br>administra con tranquilidad</h1>
+            <p class="text-2xl text-zinc-300 max-w-2xl mx-auto">Marketing premium + Informe DICOM interactivo + Gestión hipotecaria completa. Todo en un solo lugar.</p>
         </div>
     </section>
 
-    <!-- Beneficios para dueños -->
+    <!-- SERVICIOS DETALLADOS -->
     <section class="py-20 bg-black">
-        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12">
-            <!-- Columna izquierda -->
-            <div class="space-y-16">
-                <div class="flex gap-8">
-                    <div class="text-5xl">📈</div>
-                    <div>
-                        <h3 class="text-2xl font-bold mb-2">Venta en tiempo récord</h3>
-                        <p class="text-zinc-400">Promedio de venta: 21 días. Precio 8% por encima del promedio de mercado gracias a nuestro marketing premium.</p>
-                    </div>
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Venta -->
+                <div class="card-hover bg-zinc-900 rounded-3xl p-8">
+                    <div class="text-6xl mb-6">🏠</div>
+                    <h3 class="text-3xl font-bold mb-4">Venta Premium</h3>
+                    <ul class="space-y-4 text-zinc-400">
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1"></i> Fotografía profesional + tour 360°</li>
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1"></i> Publicación en 15 portales top</li>
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1"></i> Promedio de venta: 21 días</li>
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1"></i> Precio +8% sobre mercado</li>
+                    </ul>
+                    <div class="mt-10 text-amber-500 font-semibold">Desde 2% comisión</div>
                 </div>
-                <div class="flex gap-8">
-                    <div class="text-5xl">🔑</div>
-                    <div>
-                        <h3 class="text-2xl font-bold mb-2">Arriendo seguro y sin vacíos</h3>
-                        <p class="text-zinc-400">Garantía de pago mensual + seguros integrados. 98% de ocupación anual.</p>
-                    </div>
-                </div>
-                <div class="flex gap-8">
-                    <div class="text-5xl">📊</div>
-                    <div>
-                        <h3 class="text-2xl font-bold mb-2">Informe DICOM interactivo</h3>
-                        <p class="text-zinc-400">Servicio exclusivo: generamos informes digitales en 24h con análisis de crédito y recomendaciones.</p>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Columna derecha -->
-            <div class="bg-zinc-900 rounded-3xl p-10">
-                <h3 class="text-3xl font-bold mb-8">Registra tu propiedad GRATIS en 60 segundos</h3>
-                <form class="space-y-6" onsubmit="alert('✅ ¡Propiedad registrada! Te contactaremos en menos de 2 horas.'); return false;">
-                    <input type="text" placeholder="Dirección completa" class="w-full bg-zinc-800 border border-zinc-700 rounded-2xl px-6 py-5">
-                    <div class="grid grid-cols-2 gap-6">
-                        <input type="text" placeholder="Tipo (depto/casa)" class="w-full bg-zinc-800 border border-zinc-700 rounded-2xl px-6 py-5">
-                        <input type="text" placeholder="Precio deseado" class="w-full bg-zinc-800 border border-zinc-700 rounded-2xl px-6 py-5">
-                    </div>
-                    <button type="submit" class="w-full bg-amber-500 text-zinc-950 font-bold py-6 rounded-3xl text-lg">REGISTRAR MI PROPIEDAD AHORA</button>
-                </form>
-                <p class="text-center text-xs text-zinc-500 mt-6">Sin compromiso • Respuesta en menos de 2 horas</p>
+                <!-- Arriendo -->
+                <div class="card-hover bg-zinc-900 rounded-3xl p-8">
+                    <div class="text-6xl mb-6">🔑</div>
+                    <h3 class="text-3xl font-bold mb-4">Arriendo Seguro</h3>
+                    <ul class="space-y-4 text-zinc-400">
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1"></i> Selección de inquilinos con DICOM</li>
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1"></i> Contrato digital + garantía de pago</li>
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1"></i> 98% de ocupación anual</li>
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1"></i> Mantenimiento incluido</li>
+                    </ul>
+                    <div class="mt-10 text-amber-500 font-semibold">Desde 8% mensual</div>
+                </div>
+
+                <!-- Administración -->
+                <div class="card-hover bg-zinc-900 rounded-3xl p-8">
+                    <div class="text-6xl mb-6">📊</div>
+                    <h3 class="text-3xl font-bold mb-4">Administración 100% Digital</h3>
+                    <ul class="space-y-4 text-zinc-400">
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1"></i> Portal web para dueños</li>
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1"></i> Cobro automático y rendición mensual</li>
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1"></i> Reparaciones gestionadas</li>
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1"></i> Informe DICOM interactivo GRATIS</li>
+                    </ul>
+                    <div class="mt-10 text-amber-500 font-semibold">Desde $29.990/mes</div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- (copia el footer y cierra todo igual que en index.html) -->
+    <!-- FORMULARIO CAPTACIÓN DUEÑOS -->
+    <section class="py-20 bg-zinc-900">
+        <div class="max-w-2xl mx-auto px-6">
+            <div class="bg-black rounded-3xl p-12 border border-amber-500/20">
+                <h2 class="heading text-5xl font-bold text-center mb-4">Registra tu propiedad HOY</h2>
+                <p class="text-center text-zinc-400 mb-10">Te contactamos en menos de 2 horas con propuesta personalizada</p>
+                
+                <form onsubmit="registrarPropiedad(event)" class="space-y-6">
+                    <input type="text" id="direccion" placeholder="Dirección completa de tu propiedad" 
+                           class="w-full bg-zinc-800 border border-zinc-700 focus:border-amber-500 rounded-3xl px-8 py-7 text-lg outline-none">
+                    
+                    <div class="grid grid-cols-2 gap-6">
+                        <select id="tipo" class="w-full bg-zinc-800 border border-zinc-700 focus:border-amber-500 rounded-3xl px-8 py-7 text-lg outline-none">
+                            <option value="">Tipo de propiedad</option>
+                            <option value="Departamento">Departamento</option>
+                            <option value="Casa">Casa</option>
+                            <option value="Oficina">Oficina</option>
+                            <option value="Terreno">Terreno</option>
+                        </select>
+                        <input type="text" id="precio" placeholder="Precio deseado" 
+                               class="w-full bg-zinc-800 border border-zinc-700 focus:border-amber-500 rounded-3xl px-8 py-7 text-lg outline-none">
+                    </div>
+
+                    <button type="submit"
+                            class="w-full bg-amber-500 hover:bg-amber-600 text-zinc-950 font-bold py-7 rounded-3xl text-xl transition">
+                        REGISTRAR MI PROPIEDAD GRATIS
+                    </button>
+                </form>
+                <p class="text-center text-xs text-zinc-500 mt-8">Sin compromiso • Respuesta inmediata</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER (igual en todas) -->
+    <footer class="bg-black py-16 border-t border-zinc-900">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-10">
+            <div>
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-9 h-9 bg-amber-500 rounded-2xl flex items-center justify-center text-2xl">🏠</div>
+                    <span class="heading text-3xl font-bold">ELITE</span>
+                </div>
+                <p class="text-zinc-400 text-sm">Expertos en venta, arriendo y administración de propiedades en Chile desde 2018.</p>
+            </div>
+            <div>
+                <p class="font-semibold mb-5">Enlaces rápidos</p>
+                <ul class="space-y-3 text-sm text-zinc-400">
+                    <li><a href="index.html" class="hover:text-amber-500">Inicio</a></li>
+                    <li><a href="servicios.html" class="hover:text-amber-500">Servicios</a></li>
+                    <li><a href="propiedades.html" class="hover:text-amber-500">Propiedades</a></li>
+                    <li><a href="contacto.html" class="hover:text-amber-500">Contacto</a></li>
+                </ul>
+            </div>
+            <div>
+                <p class="font-semibold mb-5">Servicios</p>
+                <ul class="space-y-3 text-sm text-zinc-400">
+                    <li>Venta y arriendo</li>
+                    <li>Administración de propiedades</li>
+                    <li>Informe DICOM interactivo</li>
+                    <li>Asesoría de compra</li>
+                    <li>Gestión de créditos hipotecarios</li>
+                </ul>
+            </div>
+            <div>
+                <p class="font-semibold mb-5">Contáctanos</p>
+                <a href="https://wa.me/56912345678" target="_blank" class="flex items-center gap-3 text-green-400 hover:text-green-500 font-medium">
+                    <i class="fa-brands fa-whatsapp text-3xl"></i>
+                    <span>+56 9 1234 5678</span>
+                </a>
+                <p class="text-xs text-zinc-500 mt-8">© 2026 Elite Propiedades • Todos los derechos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Hamburger
+        const hamburger = document.getElementById('hamburger')
+        const mobileMenu = document.getElementById('mobile-menu')
+        hamburger.addEventListener('click', () => mobileMenu.classList.toggle('hidden'))
+
+        // Formulario captación
+        function registrarPropiedad(e) {
+            e.preventDefault()
+            const direccion = document.getElementById('direccion').value
+            if (!direccion) {
+                alert("Por favor ingresa la dirección de tu propiedad")
+                return
+            }
+            alert(`✅ ¡Propiedad registrada exitosamente!\n\nDirección: ${direccion}\n\nUn ejecutivo Elite te contactará por WhatsApp en menos de 2 horas.\n\n¡Gracias por confiar en nosotros!`)
+            window.location.href = "contacto.html"
+        }
+
+        // Tailwind
+        tailwind.config = { content: [], theme: { extend: {} } }
+    </script>
 </body>
 </html>
