@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propiedades Disponibles - Elite Propiedades</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .heading { font-family: 'Playfair Display', serif; }
+        .nav-link { transition: all 0.3s; }
+        .nav-link:hover { color: #f59e0b; transform: translateY(-2px); }
+        .card-hover { transition: all 0.4s; }
+        .card-hover:hover { transform: translateY(-15px); box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4); }
+    </style>
+</head>
+<body class="bg-zinc-950 text-white">
+
+    <!-- NAVBAR (igual) -->
+    <nav class="bg-zinc-950 border-b border-zinc-800 fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-amber-500 rounded-2xl flex items-center justify-center text-2xl font-bold shadow-lg">🏠</div>
+                <div>
+                    <span class="heading text-3xl font-bold tracking-tight text-white">ELITE</span>
+                    <span class="text-amber-500 text-xl font-semibold">PROPIEDADES</span>
+                </div>
+            </a>
+
+            <div class="hidden md:flex items-center gap-10 text-sm font-medium">
+                <a href="servicios.html" class="nav-link">Servicios</a>
+                <a href="propiedades.html" class="nav-link text-amber-500">Propiedades</a>
+                <a href="contacto.html" class="nav-link">Contacto</a>
+            </div>
+
+            <button id="hamburger" class="md:hidden text-3xl">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <a href="https://wa.me/56912345678" target="_blank" class="hidden md:flex items-center gap-2 bg-green-500 hover:bg-green-600 px-5 py-3 rounded-2xl font-semibold text-sm transition">
+                <i class="fa-brands fa-whatsapp text-xl"></i>
+                <span>WhatsApp</span>
+            </a>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-zinc-950 border-t border-zinc-800 py-6">
+            <div class="flex flex-col gap-6 px-6 text-lg font-medium">
+                <a href="servicios.html" class="py-2">Servicios</a>
+                <a href="propiedades.html" class="py-2">Propiedades</a>
+                <a href="contacto.html" class="py-2">Contacto</a>
+                <a href="https://wa.me/56912345678" target="_blank" class="flex items-center gap-3 bg-green-500 text-white py-4 px-6 rounded-3xl justify-center font-semibold">
+                    <i class="fa-brands fa-whatsapp text-2xl"></i> Hablar por WhatsApp
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO PROPIEDADES -->
+    <section class="pt-32 pb-12 bg-black">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h1 class="heading text-6xl font-bold">Propiedades disponibles</h1>
+            <p class="text-zinc-400 mt-4">Venta y arriendo en Santiago y regiones • Actualizado hoy</p>
+        </div>
+    </section>
+
+    <!-- FILTROS -->
+    <div class="max-w-7xl mx-auto px-6 pb-8">
+        <div class="flex flex-wrap gap-4 justify-center">
+            <button onclick="filtrar('todos')" id="btn-todos" 
+                    class="filter-btn active px-10 py-4 bg-amber-500 text-zinc-950 font-bold rounded-3xl">TODAS</button>
+            <button onclick="filtrar('venta')" id="btn-venta" 
+                    class="filter-btn px-10 py-4 border border-zinc-700 hover:bg-zinc-800 rounded-3xl">EN VENTA</button>
+            <button onclick="filtrar('arriendo')" id="btn-arriendo" 
+                    class="filter-btn px-10 py-4 border border-zinc-700 hover:bg-zinc-800 rounded-3xl">EN ARRIENDO</button>
+        </div>
+    </div>
+
+    <!-- GRID DE PROPIEDADES -->
+    <section class="max-w-7xl mx-auto px-6 pb-20">
+        <div id="propiedades-grid" class="grid md:grid-cols-3 gap-8">
+            <!-- Se genera con JavaScript -->
+        </div>
+    </section>
+
+    <!-- FOOTER (igual) -->
+    <footer class="bg-black py-16 border-t border-zinc-900">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-10">
+            <!-- (mismo footer que en servicios.html - copia y pega si quieres) -->
+            <div>
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-9 h-9 bg-amber-500 rounded-2xl flex items-center justify-center text-2xl">🏠</div>
+                    <span class="heading text-3xl font-bold">ELITE</span>
+                </div>
+                <p class="text-zinc-400 text-sm">Expertos en venta, arriendo y administración de propiedades en Chile desde 2018.</p>
+            </div>
+            <div>
+                <p class="font-semibold mb-5">Enlaces rápidos</p>
+                <ul class="space-y-3 text-sm text-zinc-400">
+                    <li><a href="index.html" class="hover:text-amber-500">Inicio</a></li>
+                    <li><a href="servicios.html" class="hover:text-amber-500">Servicios</a></li>
+                    <li><a href="propiedades.html" class="hover:text-amber-500">Propiedades</a></li>
+                    <li><a href="contacto.html" class="hover:text-amber-500">Contacto</a></li>
+                </ul>
+            </div>
+            <div>
+                <p class="font-semibold mb-5">Servicios</p>
+                <ul class="space-y-3 text-sm text-zinc-400">
+                    <li>Venta y arriendo</li>
+                    <li>Administración de propiedades</li>
+                    <li>Informe DICOM interactivo</li>
+                    <li>Asesoría de compra</li>
+                    <li>Gestión de créditos hipotecarios</li>
+                </ul>
+            </div>
+            <div>
+                <p class="font-semibold mb-5">Contáctanos</p>
+                <a href="https://wa.me/56912345678" target="_blank" class="flex items-center gap-3 text-green-400 hover:text-green-500 font-medium">
+                    <i class="fa-brands fa-whatsapp text-3xl"></i>
+                    <span>+56 9 1234 5678</span>
+                </a>
+                <p class="text-xs text-zinc-500 mt-8">© 2026 Elite Propiedades • Todos los derechos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const propiedadesData = [
+            { id:1, tipo:"venta", titulo:"Departamento 120m² • Las Condes", precio:"$485.000.000", img:"https://images.unsplash.com/photo-1613977257363-707ba934822f", dorm:3, bath:2, estacion:2 },
+            { id:2, tipo:"arriendo", titulo:"Casa 250m² con piscina • Providencia", precio:"$1.200.000 / mes", img:"https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde", dorm:5, bath:4, estacion:3 },
+            { id:3, tipo:"venta", titulo:"Oficina 80m² • Vitacura", precio:"$265.000.000", img:"https://images.unsplash.com/photo-1600585153490-76fb20a32601", dorm:0, bath:2, estacion:2 },
+            { id:4, tipo:"venta", titulo:"Departamento 95m² • Ñuñoa", precio:"$318.000.000", img:"https://images.unsplash.com/photo-1560518883-ce09059eeffa", dorm:3, bath:2, estacion:1 },
+            { id:5, tipo:"arriendo", titulo:"Casa 180m² • La Reina", precio:"$950.000 / mes", img:"https://images.unsplash.com/photo-1605276374104-dee298845a20", dorm:4, bath:3, estacion:2 },
+            { id:6, tipo:"venta", titulo:"Departamento 65m² • Centro", precio:"$179.000.000", img:"https://images.unsplash.com/photo-1522708323590-d24dbb6b0267", dorm:2, bath:1, estacion:1 }
+        ]
+
+        function crearTarjeta(prop) {
+            const div = document.createElement('div')
+            div.className = `card-hover bg-zinc-900 rounded-3xl overflow-hidden`
+            div.innerHTML = `
+                <div class="relative">
+                    <img src="${prop.img}" class="w-full h-72 object-cover">
+                    <div class="absolute top-5 left-5 ${prop.tipo === 'venta' ? 'bg-amber-500' : 'bg-emerald-500'} text-zinc-950 text-xs font-bold px-5 py-1 rounded-2xl">
+                        ${prop.tipo.toUpperCase()}
+                    </div>
+                </div>
+                <div class="p-7">
+                    <p class="text-sm text-zinc-400">${prop.titulo.split('•')[1]}</p>
+                    <h3 class="text-2xl font-semibold mt-2">${prop.titulo.split('•')[0]}</h3>
+                    <p class="text-3xl font-bold \( {prop.tipo === 'venta' ? 'text-amber-500' : 'text-emerald-500'} mt-1"> \){prop.precio}</p>
+                    <div class="flex gap-6 mt-6 text-sm">
+                        \( {prop.dorm > 0 ? `<div><i class="fa-solid fa-bed mr-2"></i> \){prop.dorm}</div>` : ''}
+                        <div><i class="fa-solid fa-bath mr-2"></i>${prop.bath}</div>
+                        <div><i class="fa-solid fa-car mr-2"></i>${prop.estacion}</div>
+                    </div>
+                </div>
+            `
+            return div
+        }
+
+        function renderPropiedades(filtro = 'todos') {
+            const grid = document.getElementById('propiedades-grid')
+            grid.innerHTML = ''
+            
+            const filtradas = filtro === 'todos' 
+                ? propiedadesData 
+                : propiedadesData.filter(p => p.tipo === filtro)
+            
+            filtradas.forEach(prop => grid.appendChild(crearTarjeta(prop)))
+        }
+
+        function filtrar(tipo) {
+            // Quitar active a todos
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active', 'bg-amber-500', 'text-zinc-950'))
+            // Activar el correcto
+            if (tipo === 'todos') document.getElementById('btn-todos').classList.add('active', 'bg-amber-500', 'text-zinc-950')
+            if (tipo === 'venta') document.getElementById('btn-venta').classList.add('active', 'bg-amber-500', 'text-zinc-950')
+            if (tipo === 'arriendo') document.getElementById('btn-arriendo').classList.add('active', 'bg-amber-500', 'text-zinc-950')
+            
+            renderPropiedades(tipo)
+        }
+
+        // Inicializar
+        renderPropiedades()
+        
+        // Hamburger
+        const hamburger = document.getElementById('hamburger')
+        const mobileMenu = document.getElementById('mobile-menu')
+        hamburger.addEventListener('click', () => mobileMenu.classList.toggle('hidden'))
+
+        tailwind.config = { content: [], theme: { extend: {} } }
+    </script>
+</body>
+</html>
