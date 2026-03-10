@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- COPIA EXACTAMENTE EL <head> DEL index.html -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios - Elite Propiedades</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <!-- (copia todo el <style> y script del index.html también) -->
+</head>
+<body class="bg-zinc-950 text-white">
+    <!-- COPIA EXACTAMENTE EL NAVBAR del index.html -->
+
+    <section class="pt-32 pb-20 bg-gradient-to-b from-black to-zinc-900">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+            <h1 class="heading text-6xl font-bold mb-6">¿Quieres vender, arrendar o administrar tu propiedad con resultados reales?</h1>
+            <p class="max-w-2xl mx-auto text-xl text-zinc-300">Te ofrecemos el paquete completo: venta rápida, arriendo seguro, administración 100% digital, Informe DICOM interactivo, asesoría de compra y gestión de créditos hipotecarios.</p>
+        </div>
+    </section>
+
+    <!-- Beneficios para dueños -->
+    <section class="py-20 bg-black">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12">
+            <!-- Columna izquierda -->
+            <div class="space-y-16">
+                <div class="flex gap-8">
+                    <div class="text-5xl">📈</div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-2">Venta en tiempo récord</h3>
+                        <p class="text-zinc-400">Promedio de venta: 21 días. Precio 8% por encima del promedio de mercado gracias a nuestro marketing premium.</p>
+                    </div>
+                </div>
+                <div class="flex gap-8">
+                    <div class="text-5xl">🔑</div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-2">Arriendo seguro y sin vacíos</h3>
+                        <p class="text-zinc-400">Garantía de pago mensual + seguros integrados. 98% de ocupación anual.</p>
+                    </div>
+                </div>
+                <div class="flex gap-8">
+                    <div class="text-5xl">📊</div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-2">Informe DICOM interactivo</h3>
+                        <p class="text-zinc-400">Servicio exclusivo: generamos informes digitales en 24h con análisis de crédito y recomendaciones.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Columna derecha -->
+            <div class="bg-zinc-900 rounded-3xl p-10">
+                <h3 class="text-3xl font-bold mb-8">Registra tu propiedad GRATIS en 60 segundos</h3>
+                <form class="space-y-6" onsubmit="alert('✅ ¡Propiedad registrada! Te contactaremos en menos de 2 horas.'); return false;">
+                    <input type="text" placeholder="Dirección completa" class="w-full bg-zinc-800 border border-zinc-700 rounded-2xl px-6 py-5">
+                    <div class="grid grid-cols-2 gap-6">
+                        <input type="text" placeholder="Tipo (depto/casa)" class="w-full bg-zinc-800 border border-zinc-700 rounded-2xl px-6 py-5">
+                        <input type="text" placeholder="Precio deseado" class="w-full bg-zinc-800 border border-zinc-700 rounded-2xl px-6 py-5">
+                    </div>
+                    <button type="submit" class="w-full bg-amber-500 text-zinc-950 font-bold py-6 rounded-3xl text-lg">REGISTRAR MI PROPIEDAD AHORA</button>
+                </form>
+                <p class="text-center text-xs text-zinc-500 mt-6">Sin compromiso • Respuesta en menos de 2 horas</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- (copia el footer y cierra todo igual que en index.html) -->
+</body>
+</html>
